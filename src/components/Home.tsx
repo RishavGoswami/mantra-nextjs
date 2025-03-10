@@ -5,6 +5,7 @@ import { useMantraStore } from "@/store/mantra";
 import Link from "next/link";
 import { Loader } from "@/src/shared/Loader";
 import { useMantra } from "@/src/hooks/useMantra";
+import { Images } from "lucide-react";
 
 export function HomePage() {
   const { data, isLoading } = useMantra();
@@ -20,8 +21,11 @@ export function HomePage() {
 
   return (
     <>
-      <div className="flex-1 sticky top-0 bg-black z-10 p-4 text-center">
-        <h1 className="text-xl font-bold">Mantra</h1>
+      <div className="z-20 top-0 left-0 w-full mb-4 bg-black shadow-md py-4 px-6 flex justify-center border-b-2">
+        <Link className="mr-4 absolute top-4 left-4" href="/image">
+          <Images size={20} />
+        </Link>
+        <h1 className="text-lg font-bold">Mantra</h1>
       </div>
       <div className="p-4 grid grid-cols-2 gap-2 sm:max-w-[50vw] sm:m-auto">
         {mantras.map((mantra) => (
