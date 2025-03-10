@@ -16,10 +16,8 @@ const ImageScreen = ({ isHorizontal = true }: { isHorizontal?: boolean }) => {
   useEffect(() => {
     async function fetchImages() {
       const res = await fetch("/api/images");
-      let data = await res.json();
-      data = data.sort((a: string, b: string) =>
-        a.localeCompare(b, undefined, { numeric: true })
-      );
+      const data = await res.json();
+
       setImages(data);
     }
     fetchImages();
@@ -50,9 +48,9 @@ const ImageScreen = ({ isHorizontal = true }: { isHorizontal?: boolean }) => {
               <Image
                 src={`/images/${file}`}
                 alt={`Image ${index}`}
-                layout="fill"
-                objectFit="cover"
-                loading="lazy"
+                fill
+                style={{ objectFit: "cover" }}
+                priority={index === 0}
                 className="rounded-lg"
               />
             </div>
