@@ -12,6 +12,7 @@ interface Mantra {
 interface MantraStore {
   mantras: Mantra[];
   setMantras: (data: Mantra[]) => void;
+  clearCache: () => void;
 }
 
 export const useMantraStore = create<MantraStore>()(
@@ -19,6 +20,9 @@ export const useMantraStore = create<MantraStore>()(
     (set) => ({
       mantras: [],
       setMantras: (data) => set({ mantras: data }),
+      clearCache: () => {
+        localStorage.removeItem("mantra-storage");
+      },
     }),
     {
       name: "mantra-storage",
